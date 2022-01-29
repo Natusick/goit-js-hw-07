@@ -7,6 +7,7 @@ const galleryEl = document.querySelector('.gallery');
 
 
 const newGalleryItems = createGalleryItems(galleryItems);
+
     function createGalleryItems(galleryItems){
         return galleryItems
         .map(({preview, original, description}) => {
@@ -22,13 +23,15 @@ const newGalleryItems = createGalleryItems(galleryItems);
         .join('');
     };
     console.log(newGalleryItems);
-    
+    galleryEl.insertAdjacentHTML('beforeend', newGalleryItems);
+
+    let currentImage = new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDelay: '250'});
+    galleryEl.addEventListener('click', onGalleryClick);
     function onGalleryClick(event) {
         event.preventDefault();
         
-        let currentImage = new SimpleLightbox('.gallery a', {captionsData: 'alt', captionDelay: '250'});
-        console.log(currentImage);
+       
+        return currentImage;
     };
 
-galleryEl.addEventListener('click', onGalleryClick);
-galleryEl.insertAdjacentHTML('beforeend', newGalleryItems);
+
